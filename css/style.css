@@ -1,4 +1,4 @@
-/* Xenomere OU - B2B Corporate Website
+/* Xenomere OÜ — B2B Corporate Website
  * Deep navy + white + teal accent. European biotech aesthetic.
  * No products, no prices, no cart. */
 
@@ -29,6 +29,7 @@ body {
 
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
+/* Header */
 header {
   background: var(--navy);
   padding: 0;
@@ -76,6 +77,7 @@ nav a.cta-nav {
 }
 nav a.cta-nav:hover { background: var(--teal-hover); }
 
+/* Hero */
 .hero {
   background: var(--navy);
   color: var(--white);
@@ -111,6 +113,7 @@ nav a.cta-nav:hover { background: var(--teal-hover); }
 }
 .hero .btn:hover { background: var(--teal-hover); }
 
+/* Trust bar */
 .trust-bar {
   background: var(--off-white);
   border-bottom: 1px solid var(--border);
@@ -141,6 +144,7 @@ nav a.cta-nav:hover { background: var(--teal-hover); }
   flex-shrink: 0;
 }
 
+/* Sections */
 section { padding: 80px 0; }
 section.alt { background: var(--off-white); }
 
@@ -158,6 +162,7 @@ section.alt { background: var(--off-white); }
   margin-bottom: 48px;
 }
 
+/* 3-column cards */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
 .card {
   background: var(--white);
@@ -171,8 +176,9 @@ section.alt { background: var(--off-white); }
 .card p { font-size: 0.93rem; color: var(--gray-600); line-height: 1.65; }
 .card ul { list-style: none; margin-top: 8px; }
 .card ul li { font-size: 0.9rem; color: var(--gray-600); padding: 4px 0 4px 18px; position: relative; }
-.card ul li::before { content: '\2022'; color: var(--teal); position: absolute; left: 0; font-weight: bold; }
+.card ul li::before { content: '•'; color: var(--teal); position: absolute; left: 0; font-weight: bold; }
 
+/* Process steps */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
 .step {
   background: var(--white);
@@ -191,6 +197,7 @@ section.alt { background: var(--off-white); }
 .step h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
 .step p { font-size: 0.9rem; color: var(--gray-600); line-height: 1.6; }
 
+/* Compliance list */
 .compliance-list { display: grid; gap: 20px; max-width: 800px; }
 .comp-item {
   background: var(--white);
@@ -205,6 +212,7 @@ section.alt { background: var(--off-white); }
 .comp-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; color: var(--navy); }
 .comp-item p { font-size: 0.9rem; color: var(--gray-600); line-height: 1.55; }
 
+/* Callout */
 .callout {
   background: var(--navy);
   color: var(--white);
@@ -215,43 +223,133 @@ section.alt { background: var(--off-white); }
 .callout p { font-size: 1.05rem; line-height: 1.7; color: rgba(255,255,255,0.85); }
 .callout strong { color: var(--white); }
 
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.form-grid .full { grid-column: 1 / -1; }
-label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--navy); }
-input, textarea, select {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-family: inherit;
-  color: var(--gray-800);
+/* Email contact section */
+.email-contact {
   background: var(--white);
-  transition: border-color 0.15s;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px 36px;
+  text-align: center;
+  margin-bottom: 40px;
 }
-input:focus, textarea:focus, select:focus {
-  outline: none;
-  border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(26,127,110,0.1);
+.email-intro {
+  font-size: 1rem;
+  color: var(--gray-600);
+  margin: 16px 0 24px;
+  line-height: 1.65;
 }
-textarea { resize: vertical; min-height: 120px; }
-button[type="submit"] {
+.email-address {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+  word-break: break-all;
+}
+.email-address:hover { color: var(--teal); }
+
+.email-button {
+  display: inline-block;
   background: var(--teal);
-  color: var(--white);
-  border: none;
+  color: var(--white) !important;
   padding: 14px 36px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 1rem;
-  cursor: pointer;
+  text-decoration: none;
   transition: background 0.15s;
-  margin-top: 8px;
+  margin-bottom: 24px;
+  cursor: pointer;
 }
-button[type="submit"]:hover { background: var(--teal-hover); }
+.email-button:hover { background: var(--teal-hover); }
 
-.alt-contact { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
-.alt-contact p { font-size: 0.93rem; color: var(--gray-600); margin-bottom: 6px; }
+.response-note {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
 
+.privacy-note {
+  font-size: 0.88rem;
+  color: var(--gray-400);
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* Company info section */
+.company-info {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px;
+}
+.company-info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.info-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+.info-item:last-of-type { margin-bottom: 24px; }
+
+.info-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.info-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+
+.info-value {
+  font-size: 0.95rem;
+  color: var(--gray-800);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.info-value a {
+  color: var(--teal);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.info-value a:hover { text-decoration: underline; }
+
+.standing-note {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-style: italic;
+}
+
+/* Footer */
 footer {
   background: var(--navy);
   color: rgba(255,255,255,0.7);
@@ -266,6 +364,7 @@ footer a:hover { color: var(--white); }
 footer .legal-line { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 8px; font-size: 0.82rem; }
 footer .legal-line a { display: inline; margin-right: 18px; }
 
+/* Legal pages */
 .legal-content { max-width: 760px; margin: 0 auto; }
 .legal-content h1 { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
 .legal-content h2 { font-size: 1.3rem; font-weight: 700; color: var(--navy); margin: 36px 0 12px; }
@@ -274,6 +373,7 @@ footer .legal-line a { display: inline; margin-right: 18px; }
 .legal-content ul { margin: 8px 0 16px 20px; }
 .legal-content .last-updated { font-size: 0.85rem; color: var(--gray-400); margin-bottom: 32px; }
 
+/* Page hero (subpages) */
 .page-hero {
   background: var(--navy);
   color: var(--white);
@@ -282,6 +382,7 @@ footer .legal-line a { display: inline; margin-right: 18px; }
 .page-hero h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.015em; }
 .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; margin-top: 8px; }
 
+/* Key facts box */
 .facts-box {
   background: var(--off-white);
   border: 1px solid var(--border);
@@ -294,86 +395,13 @@ footer .legal-line a { display: inline; margin-right: 18px; }
 .facts-row dt { font-weight: 600; color: var(--navy); }
 .facts-row dd { color: var(--gray-600); }
 
+/* Values */
 .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 40px; }
 .value { border-left: 3px solid var(--teal); padding-left: 20px; }
 .value h4 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
 .value p { font-size: 0.93rem; color: var(--gray-600); line-height: 1.65; }
 
-/* Contact page — direct email + company info */
-.contact-email-card {
-  background: var(--off-white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 36px 32px;
-  text-align: center;
-}
-.contact-email-link {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--teal);
-  text-decoration: none;
-  word-break: break-all;
-}
-.contact-email-link:hover { color: var(--teal-hover); }
-.contact-note {
-  font-size: 0.9rem;
-  color: var(--teal);
-  font-weight: 600;
-  margin-top: 16px;
-}
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  margin-top: 32px;
-}
-.info-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px 24px;
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
-.info-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--off-white);
-  border-radius: 10px;
-}
-.info-card h4 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 4px;
-}
-.info-card p {
-  font-size: 0.9rem;
-  color: var(--gray-600);
-  line-height: 1.55;
-}
-.info-link {
-  display: inline-block;
-  margin-top: 6px;
-  font-size: 0.85rem;
-  color: var(--teal);
-  text-decoration: none;
-  font-weight: 600;
-}
-.info-link:hover { color: var(--teal-hover); }
-.info-note {
-  font-size: 0.82rem;
-  color: var(--gray-400);
-  margin-top: 8px;
-  font-style: italic;
-}
-
+/* Responsive */
 @media (max-width: 768px) {
   header .container { flex-direction: column; gap: 12px; }
   nav { gap: 16px; flex-wrap: wrap; justify-content: center; }
@@ -381,7 +409,5 @@ footer .legal-line a { display: inline; margin-right: 18px; }
   .hero h1 { font-size: 2rem; }
   .hero p.sub { font-size: 1rem; }
   footer .container { grid-template-columns: 1fr; }
-  .form-grid { grid-template-columns: 1fr; }
   .cards, .steps, .values { grid-template-columns: 1fr; }
-  .info-grid { grid-template-columns: 1fr; }
 }
