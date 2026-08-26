@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xenomere — Personal Health Tracking</title>
+  <meta name="description" content="Xenomere is a personal wellness notebook. Track training, recovery, nutrition, labs, and notes. Not a medical device.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080b10'/><text x='16' y='22' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='18' fill='%2361d3a0'>X</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="wordmark">Xenomere</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.site-nav').classList.toggle('open')">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
+    </button>
+    <nav class="site-nav">
+      <a href="/">Product</a>
+      <a href="/support/">Support</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<main class="site-main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">Wellness &amp; Self-Tracking</div>
+    <h1>Track training, recovery, and the numbers you already measure.</h1>
+    <p>Xenomere is a personal wellness notebook. Log workouts and meals. Connect a wearable if you want. Keep lab results in one place. Look at trends over time.</p>
+    <p class="hero-disclaimer">Not a medical device. Not medical advice. Not a pharmacy. Xenomere does not diagnose, treat, cure, or prevent any condition.</p>
+    <div class="store-badges">
+      <a href="#" class="store-badge" aria-label="Download on the App Store">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a href="#" class="store-badge" aria-label="Get it on Google Play">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302-2.302 2.302L15.396 12l2.302-2.492zM5.864 2.658L16.801 8.99l-2.302 2.303L5.864 2.658z"/></svg>
+        Google Play
+      </a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6.5 6.5h11M6.5 17.5h11M4 12h16M8 6.5V4M16 6.5V4M8 17.5v2.5M16 17.5v2.5"/></svg>
+      </div>
+      <h3>Workout Programs</h3>
+      <p>Log sessions, track load, and follow adaptive progression. Keep a simple training history with estimates — not a coaching licence.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3>Nutrition &amp; Food Database</h3>
+      <p>Log meals and calories with a real food database. Get a density score based on what you entered — an estimate, not a prescription.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <h3>Wearables &amp; Apple Health</h3>
+      <p>Pull overnight HRV, sleep, and resting heart rate from Apple Health, Health Connect, or a wearable you authorise — or type them in manually.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+      </div>
+      <h3>Lab Result Tracking</h3>
+      <p>Photograph or type marker values from a panel you obtained elsewhere. We chart them over time. We do not order tests or act as a laboratory.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h3>N-of-1 Experiments</h3>
+      <p>Record what you changed and what you observed. These are your notes — not a clinical trial and not a prescription.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Guided Health Paths</h3>
+      <p>Structured check-ins, trend analysis, and personalised insights based on your data. Decision-support estimates — not diagnosis.</p>
+    </div>
+  </section>
+
+  <!-- What we don't do -->
+  <section class="section" style="text-align:center; max-width:640px; margin-left:auto; margin-right:auto;">
+    <div class="highlight">
+      <p><strong>Xenomere does not sell compounds, recommend a pharmacy, or calculate a medical dose for you.</strong> If you keep personal notes about substances, that is your record — not our supply chain.</p>
+    </div>
+  </section>
+
+  <!-- Data ownership -->
+  <section class="section" style="text-align:center; max-width:640px; margin-left:auto; margin-right:auto;">
+    <div class="section-label">Your Data</div>
+    <h2>Your data stays under your account.</h2>
+    <p>Export it anytime. Delete the account from the app or from <a href="/delete-account/">xenomere.com/delete-account</a>. We do not sell personal data and we do not use health data for advertising.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Xenomere</div>
+      <div class="footer-entity">Xenomere OÜ · Narva mnt 5, 10117 Tallinn, Estonia · Registry code 17507482</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="/">Home</a>
+        <a href="/support/">Support</a>
+        <a href="/health-disclaimer/">Health Disclaimer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Service</a>
+        <a href="/cookies/">Cookie Policy</a>
+        <a href="/legal/">Imprint</a>
+        <a href="/delete-account/">Delete Account</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@xenomere.com">contact@xenomere.com</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Xenomere OÜ. All rights reserved.</span>
+    <span>Not a medical device. Not medical advice.</span>
+  </div>
+</footer>
+
+</body>
+</html>
