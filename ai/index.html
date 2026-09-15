@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xenomere × Alibaba Cloud — AI Catalyst Deck</title>
+<meta name="description" content="How Xenomere uses AI in production, and where Alibaba Cloud Qwen, Wan, and infrastructure plug in.">
+<link rel="icon" href="molecule.png">
+<style>
+  :root{
+    --bg:#080b10; --bg-2:#0d1118; --card:#12171f; --card-2:#171d26;
+    --line:#1c2c28; --fg:#e8ecea; --muted:#8a9c96; --dim:#5e6e68;
+    --mint:#61d3a0; --mint-2:#2dd4bf;
+    --sans:Inter,"SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.6;letter-spacing:-0.01em;overflow:hidden}
+
+  .deck{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+  .slide{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center;padding:64px 24px;position:relative}
+  .slide-inner{width:100%;max-width:960px}
+
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--mint);margin-bottom:16px}
+  h1{font-size:clamp(34px,5.2vw,58px);font-weight:700;letter-spacing:-0.03em;line-height:1.08}
+  h2{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-0.025em;line-height:1.12}
+  .lede{color:var(--muted);font-size:clamp(16px,1.6vw,19px);max-width:760px;margin-top:18px}
+  .mint{color:var(--mint)}
+
+  .grid{display:grid;gap:16px;margin-top:36px}
+  .grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:14px;line-height:1.55}
+  .card .tag{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mint);display:block;margin-bottom:10px}
+
+  .flow{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+  .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--muted)}
+  .chip.hot{border-color:var(--mint);color:var(--mint);background:rgba(97,211,160,.08)}
+
+  .big-quote{font-size:clamp(22px,3vw,32px);font-weight:600;letter-spacing:-0.02em;line-height:1.3;max-width:840px}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:36px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .stat .n{font-size:34px;font-weight:700;letter-spacing:-0.03em;color:var(--mint)}
+  .stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+
+  .hero-logo{width:104px;height:104px;border-radius:26px;margin-bottom:32px;display:block}
+  .foot{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:var(--dim);font-size:12px;font-family:var(--mono);letter-spacing:1px}
+
+  .dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:10}
+  .dots a{width:8px;height:8px;border-radius:50%;background:var(--dim);opacity:.45;transition:all .2s}
+  .dots a.on{opacity:1;background:var(--mint);transform:scale(1.35)}
+  .counter{position:fixed;left:18px;bottom:18px;color:var(--dim);font-family:var(--mono);font-size:11px;letter-spacing:2px;z-index:10}
+  .hint{position:fixed;right:18px;bottom:18px;color:var(--dim);font-family:var(--mono);font-size:11px;letter-spacing:1px;z-index:10}
+  a{color:var(--mint);text-decoration:none}
+  ul{list-style:none}
+  li.tick{padding-left:26px;position:relative;margin-bottom:12px;color:var(--muted)}
+  li.tick::before{content:"";position:absolute;left:0;top:8px;width:14px;height:2px;background:var(--mint);border-radius:1px}
+  li.tick b{color:var(--fg);font-weight:600}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:36px;align-items:start}
+  @media(max-width:720px){.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="dots" aria-hidden="true"></nav>
+<div class="counter" aria-hidden="true">01 / 10</div>
+<div class="hint" aria-hidden="true">SCROLL / ← → KEYS</div>
+
+<main class="deck" id="deck">
+
+  <!-- 1 · TITLE -->
+  <section class="slide" id="s1">
+    <div class="slide-inner">
+      <img class="hero-logo" src="molecule.png" alt="Xenomere">
+      <div class="kicker">Alibaba Cloud · AI Catalyst Program</div>
+      <h1>AI-native performance health.<br><span class="mint">Powered by a multi-model stack.</span></h1>
+      <p class="lede">Xenomere turns wearable streams, lab results, and training logs into decisions. This deck shows the AI we run in production today — and exactly where Qwen, Wan, and Alibaba Cloud infrastructure plug in next.</p>
+      <div class="flow">
+        <span class="chip">xenomere.com</span>
+        <span class="chip">iOS · TestFlight live</span>
+        <span class="chip">Android · signed &amp; staged</span>
+      </div>
+    </div>
+    <div class="foot">XENOMERE OÜ · 2026</div>
+  </section>
+
+  <!-- 2 · PROBLEM -->
+  <section class="slide" id="s2">
+    <div class="slide-inner">
+      <div class="kicker">01 · The problem</div>
+      <h2>Consumers get dashboards.<br>Nobody gets <span class="mint">decisions</span>.</h2>
+      <div class="grid grid-3">
+        <div class="card"><h3>Fragmented signals</h3><p>HRV lives in the wearable app. Labs live in PDFs. Training lives in notes. Protocols live in spreadsheets. None of them talk to each other.</p></div>
+        <div class="card"><h3>No causal layer</h3><p>Tools show what happened, never why. “Did the new protocol help my sleep?” is a statistics question nobody answers for consumers.</p></div>
+        <div class="card"><h3>Noise-grade advice</h3><p>Generic LLM health chat is fluent and unaccountable. People need deterministic rules first — and language only to explain them.</p></div>
+      </div>
+    </div>
+    <div class="foot">02 / 10</div>
+  </section>
+
+  <!-- 3 · PRODUCT -->
+  <section class="slide" id="s3">
+    <div class="slide-inner">
+      <div class="kicker">02 · The product</div>
+      <h2>Xenomere — one record for training, labs, recovery, and protocols.</h2>
+      <div class="grid grid-3">
+        <div class="card"><h3>Training engine</h3><p>Deterministic program generation, volume landmarks, progression and deload logic — strength, endurance, and hybrid.</p></div>
+        <div class="card"><h3>Wearables + labs</h3><p>HealthKit / Health Connect streams and blood work in one timeline, with research-timed draw windows and washout tracking.</p></div>
+        <div class="card"><h3>n=1 experiments</h3><p>Guided single-subject trials with baseline/follow-up windows and significance tests on the user’s own data.</p></div>
+        <div class="card"><h3>Evidence feeds</h3><p>Large unstructured health-community datasets structured into per-compound benefit/harm evidence with per-cell significance.</p></div>
+        <div class="card"><h3>Protocol tracking</h3><p>Scheduling, adherence, and vial-level math for complex self-administered protocols.</p></div>
+        <div class="card"><h3>Live today</h3><p>iOS on TestFlight. Android release signed and staged for Play internal testing. Production backend serving the beta now.</p></div>
+      </div>
+    </div>
+    <div class="foot">03 / 10</div>
+  </section>
+
+  <!-- 4 · AI IN PRODUCT -->
+  <section class="slide" id="s4">
+    <div class="slide-inner">
+      <div class="kicker">03 · AI inside the product</div>
+      <h2>Deterministic science underneath.<br><span class="mint">LLM language on top.</span></h2>
+      <ul style="margin-top:36px">
+        <li class="tick"><b>Statistics first, words second.</b> All assessments are computed by deterministic engines. The LLM layer only translates results into plain-language coaching — it never invents numbers.</li>
+        <li class="tick"><b>Structured evidence from chaos.</b> LLM classification pipelines turn thousands of unstructured community reports into coded benefit/harm datasets with per-cell significance.</li>
+        <li class="tick"><b>Context assembly at scale.</b> Wearable deltas, lab changes, adherence and life events are packed into grounded prompts — the model reasons over the user’s actual record, not averages.</li>
+        <li class="tick"><b>Guardrails by design.</b> Model output is constrained to the computed result set, keeping the product honest and auditable.</li>
+      </ul>
+    </div>
+    <div class="foot">04 / 10</div>
+  </section>
+
+  <!-- 5 · TERMINAL OS -->
+  <section class="slide" id="s5">
+    <div class="slide-inner">
+      <div class="kicker">04 · Terminal OS — our AI operations layer</div>
+      <h2>A multi-model orchestration system that runs the company.</h2>
+      <p class="lede">Every task is routed to the frontier model best suited for it — with browser automation, scheduled agents, media pipelines, and shared memory. Qwen already earns its place in this stack on merit.</p>
+      <div class="grid grid-2">
+        <div class="card"><span class="tag">Routing</span><h3>Model-agnostic task routing</h3><p>QA audits, code refactors, research sweeps, and drafting are dispatched across multiple frontier models — including Qwen — chosen per task profile and cost.</p></div>
+        <div class="card"><span class="tag">Automation</span><h3>Browser + agent automation</h3><p>Autonomous web operations, store-console workflows, scheduled background agents, and verification loops with hard quality gates.</p></div>
+        <div class="card"><span class="tag">Media</span><h3>Video &amp; thumbnail pipelines</h3><p>Deterministic render pipelines for product videos, reels, and thumbnails — prompt-engineered, branded, and batch-produced.</p></div>
+        <div class="card"><span class="tag">Proof</span><h3>Real daily load</h3><p>This is not a demo: Terminal OS runs our engineering QA, research, and content operations every day, at meaningful token volume.</p></div>
+      </div>
+    </div>
+    <div class="foot">05 / 10</div>
+  </section>
+
+  <!-- 6 · VIDEO -->
+  <section class="slide" id="s6">
+    <div class="slide-inner">
+      <div class="kicker">05 · Video production workload</div>
+      <h2>A standing pipeline ready for <span class="mint">Wan</span> at production volume.</h2>
+      <div class="two-col">
+        <div>
+          <ul>
+            <li class="tick"><b>Today:</b> automated thumbnails, launch reels, and product explainers rendered through our own deterministic composition pipeline.</li>
+            <li class="tick"><b>Next:</b> Wan-generated marketing and in-app explainer video — prompt-templated, on-brand, batch-produced per feature release.</li>
+            <li class="tick"><b>Volume:</b> every app feature ships with video; every marketing push is a batch. Workload grows with the user base.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Why this matters to Alibaba</span>
+          <h3>A Western consumer showcase for Wan</h3>
+          <p>AI video is a contested category. A live European consumer product generating its marketing and in-app content with Wan — documented publicly — is a reference case the category needs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot">06 / 10</div>
+  </section>
+
+  <!-- 7 · ALIBABA FIT -->
+  <section class="slide" id="s7">
+    <div class="slide-inner">
+      <div class="kicker">06 · Where Alibaba Cloud plugs in</div>
+      <h2>Concrete workloads, mapped to concrete services.</h2>
+      <div class="grid grid-2">
+        <div class="card"><span class="tag">Model Studio</span><h3>Qwen-Max as the coaching engine</h3><p>Production reasoning workload: translate deterministic assessment output into coaching language, per user, per day. Estimated millions of tokens/month at current growth.</p></div>
+        <div class="card"><span class="tag">Wan</span><h3>Video generation</h3><p>Marketing batches + in-app explainers generated per release cycle through our existing composition pipeline.</p></div>
+        <div class="card"><span class="tag">ECS · ApsaraDB · OSS · CDN</span><h3>Infrastructure migration</h3><p>Move the self-hosted production backend (app servers, relational DB, media storage, delivery) onto Alibaba Cloud as the user base scales.</p></div>
+        <div class="card"><span class="tag">PAI</span><h3>Domain fine-tuning</h3><p>Fine-tune a health-terminology classification model on our coded datasets to cut classification cost and latency.</p></div>
+      </div>
+    </div>
+    <div class="foot">07 / 10</div>
+  </section>
+
+  <!-- 8 · TRACTION -->
+  <section class="slide" id="s8">
+    <div class="slide-inner">
+      <div class="kicker">07 · Traction &amp; stage</div>
+      <h2>Shipped, tested, and iterating fast.</h2>
+      <div class="stats">
+        <div class="stat"><div class="n">Live</div><div class="l">iOS app on TestFlight — 4 builds shipped in the first week</div></div>
+        <div class="stat"><div class="n">Signed</div><div class="l">Android App Bundle built, signed, staged for Play internal testing</div></div>
+        <div class="stat"><div class="n">3.5k+</div><div class="l">automated tests green on every release — hard quality gates</div></div>
+        <div class="stat"><div class="n">Daily</div><div class="l">multi-model AI operations running our engineering, QA, and content</div></div>
+      </div>
+      <p class="lede" style="margin-top:32px">Next 90 days: public iOS + Android launch, Wan video pipeline in production, hosting migration to Alibaba Cloud, first co-branded case study.</p>
+    </div>
+    <div class="foot">08 / 10</div>
+  </section>
+
+  <!-- 9 · GIVE BACK -->
+  <section class="slide" id="s9">
+    <div class="slide-inner">
+      <div class="kicker">08 · What Alibaba Cloud gets</div>
+      <h2>A partnership, not a credit request.</h2>
+      <div class="grid grid-2">
+        <div class="card"><h3>Public case study</h3><p>A documented, co-branded story: European consumer health product running Qwen + Wan in production. Written, designed, and published by us.</p></div>
+        <div class="card"><h3>In-product placement</h3><p>“Powered by Qwen / Wan” credit inside a live consumer app and in the videos it generates.</p></div>
+        <div class="card"><h3>Creator-network reach</h3><p>Promotion through our creator-economy network — the same channels we use to market Xenomere — plus conference and meetup presence.</p></div>
+        <div class="card"><h3>Engineering feedback loop</h3><p>Detailed, reproducible feedback on Model Studio, Wan, and infra from a team that runs multi-model benchmarks daily.</p></div>
+      </div>
+    </div>
+    <div class="foot">09 / 10</div>
+  </section>
+
+  <!-- 10 · ASK -->
+  <section class="slide" id="s10">
+    <div class="slide-inner">
+      <div class="kicker">09 · The ask</div>
+      <p class="big-quote">AI Catalyst credits and Model Studio tokens to move the coaching engine to <span class="mint">Qwen</span>, the video pipeline to <span class="mint">Wan</span>, and the backend to <span class="mint">Alibaba Cloud</span> — with a public case study in return.</p>
+      <div class="flow" style="margin-top:40px">
+        <span class="chip hot">xenomere.com</span>
+        <span class="chip">Xenomere OÜ · Estonia</span>
+        <span class="chip">Contact: mitko@xenomere.com</span>
+      </div>
+    </div>
+    <div class="foot">10 / 10</div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var deck=document.getElementById('deck');
+  var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dots=document.querySelector('.dots');
+  var counter=document.querySelector('.counter');
+  slides.forEach(function(s,i){
+    var a=document.createElement('a');
+    a.href='#'+s.id;
+    a.addEventListener('click',function(e){e.preventDefault();s.scrollIntoView({behavior:'smooth'});});
+    dots.appendChild(a);
+  });
+  var dotLinks=Array.prototype.slice.call(dots.children);
+  function current(){
+    var mid=deck.scrollTop+deck.clientHeight/2, idx=0;
+    slides.forEach(function(s,i){if(s.offsetTop<=mid)idx=i;});
+    dotLinks.forEach(function(d,i){d.classList.toggle('on',i===idx);});
+    counter.textContent=String(idx+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+    return idx;
+  }
+  deck.addEventListener('scroll',function(){window.requestAnimationFrame(current);},{passive:true});
+  document.addEventListener('keydown',function(e){
+    var idx=current();
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();slides[Math.min(idx+1,slides.length-1)].scrollIntoView({behavior:'smooth'});}
+    if(e.key==='ArrowUp'||e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();slides[Math.max(idx-1,0)].scrollIntoView({behavior:'smooth'});}
+    if(e.key==='Home'){e.preventDefault();slides[0].scrollIntoView({behavior:'smooth'});}
+    if(e.key==='End'){e.preventDefault();slides[slides.length-1].scrollIntoView({behavior:'smooth'});}
+  });
+  current();
+})();
+</script>
+</body>
+</html>
